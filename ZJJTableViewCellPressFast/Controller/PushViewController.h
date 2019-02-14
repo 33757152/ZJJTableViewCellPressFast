@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  PushViewController.h
 //  ZJJTableViewCellPressFast
 //
 //  Created by xtayqria on 2019/2/14.
@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+NS_ASSUME_NONNULL_BEGIN
 
-@property (strong, nonatomic) UIWindow *window;
-
+@interface PushViewController : UIViewController
 
 @end
 
+NS_ASSUME_NONNULL_END
