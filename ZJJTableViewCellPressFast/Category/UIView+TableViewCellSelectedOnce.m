@@ -33,20 +33,17 @@ static const char *selectedIndexBlockKey = "selectedIndexBlockKey";
     self.selectedIndexBlock = indexBlock;
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     NSDictionary *objectDic = @{@"tableView":tableView,@"indexPath":indexPath};
-    [self performSelector:@selector(selectRowDelay:) withObject:objectDic afterDelay:0.01];
+    [self performSelector:@selector(selectRowDelay:) withObject:objectDic afterDelay:0];
 }
 
 - (void)selectRowDelay:(NSDictionary *)dict {
     UITableView *tableView = [dict objectForKey:@"tableView"];
     NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    __block UIView *weakSelf = self;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.001 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        cell.selected = false;
-        if (weakSelf.selectedIndexBlock) {
-            weakSelf.selectedIndexBlock(indexPath);
-        }
-    });
+    cell.selected = false;
+    if (self.selectedIndexBlock) {
+        self.selectedIndexBlock(indexPath);
+    }
 }
 
 @end
